@@ -1,9 +1,3 @@
-// simple_tree_lab.cpp
-// Lab_11_BSAI_00000    <-- replace with your actual Lab/Degree/Roll
-// Author: (aapka naam yahan)
-// Description: Implementation of a general tree (Simple_tree) using templates,
-// linked-list based children (List/Node), and Queue for BFS. Includes DFS (preorder)
-// and BFS traversals and example usage.
 
 #include <iostream>
 #include <cassert>
@@ -86,7 +80,7 @@ public:
         return false;
     }
 
-    // get element at index (1-based as in some textbook code) -> we'll provide 1-based and 0-based helper
+    // get element at index -> we'll provide 1-based and 0-based helper
     T get_at_1based(int idx) const {
         assert(idx >= 1 && idx <= (int)count_ && "Index out of range in List::get_at_1based");
         Node<T>* cur = head_;
@@ -277,7 +271,7 @@ public:
 };
 
 // ---------------------------
-// Example usage (main)
+//  (main)
 // ---------------------------
 int main() {
     // Example: build small tree
