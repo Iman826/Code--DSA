@@ -45,10 +45,18 @@ class BinaryNode{
     
   }
   void clear(){
-    if(left!=nullptr)left->clear();
-    if(right!=nullptr)right->clear();
-   delete this;
-  }
+    if (leftNode != nullptr) leftNode->clear();
+        if (rightNode != nullptr) rightNode->clear();
+        if (parentNode) {
+            if (parentNode->getLeft() == this) { 
+                parentNode->setLeft(nullptr);
+            }
+            else if (parentNode->getRight() == this) {
+                parentNode->setRight(nullptr);
+            }
+        }
+        delete this;
+    }
 };
 int main(){
   BinaryNode<string>* A=new BinaryNode<string>("A");
