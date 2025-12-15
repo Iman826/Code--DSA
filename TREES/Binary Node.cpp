@@ -75,7 +75,7 @@ class BinaryNode{
         right->PreOrder();
     }
     void PostOrder(){
-        //left right
+        //left right root
         if(this==nullptr){return;}
         left->PostOrder();
         right->PostOrder();
