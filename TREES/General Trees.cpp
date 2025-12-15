@@ -42,6 +42,18 @@ class List{
       cout<<temp->retrieve()<<" -> ";
     }cout<<" Null"<<endl;
   }
+  void push_back(T d){
+      Node<T>*  newNode=new Node<T>(d);
+  if(head==nullptr){
+    head=newNode;
+    return;
+  }
+  Node<T>* p;
+  for( p=head;p->next!=nullptr;p=p->next){
+  }
+  p->next=newNode;
+  
+  }
   void push_Front(T d){
   Node<T>*  newNode=new Node<T>(d);
   if(head==nullptr){
@@ -120,11 +132,11 @@ class Tree{
     data=d;
     parent=p;
     children= new List<Tree<T>*>();}
-    ~Tree(){ delete children; }
+   
   void AddChild(T value){
    Tree<T>* newNode=new Tree<T>(value,this);//janam diya aur ungli pakra di parent ki
    //parent ki children wali list mein daal do 
-   children->push_Front(newNode);  }
+   children->push_back(newNode);  }
    void display(){
      cout<<this->data;
      for(Node<Tree<T>*>* temp=children->Head();temp!=nullptr;temp=temp->next){
@@ -187,6 +199,9 @@ int height() const {
          q.push(p->retrieve());
        }
       }
+  }
+  ~Tree(){
+       delete children;
   }
 };
 int main() {
