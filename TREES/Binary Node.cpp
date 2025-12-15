@@ -15,7 +15,7 @@ class BinaryNode{
   }
   void setLeft(BinaryNode<T>* l){
     left=l;}
-    void setRight(BinaryNode<T>* r){
+  void setRight(BinaryNode<T>* r){
     right=r;}
   T value() const{
     return data;
@@ -44,28 +44,65 @@ class BinaryNode{
     return 1+max(L,R);
     
   }
-  void clear(){
-    if (leftNode != nullptr) leftNode->clear();
-        if (rightNode != nullptr) rightNode->clear();
-        if (parentNode) {
-            if (parentNode->getLeft() == this) { 
-                parentNode->setLeft(nullptr);
-            }
-            else if (parentNode->getRight() == this) {
-                parentNode->setRight(nullptr);
-            }
-        }
+  void clear(BinaryNode<T>* parent){
+    if (left != nullptr) left->clear(this);
+    if (right!= nullptr) right->clear(this);
+    if(parent){
+    if(parent->left==this){
+        parent->left=nullptr;
+    }
+     else if(parent->right==this){
+     
+       parent->right=nullptr;
+    }
+        
+    }
         delete this;
+    
+    }
+    void Inorder(){
+        if(this==nullptr){return;}
+        left->Inorder();
+        cout<<this->data<<" ";
+        right->Inorder();
+    }
+    void PreOrder(){
+        //Root left Right
+        if(this==nullptr){return;}
+        cout<<this->data<<" ";
+        left->PreOrder();
+        
+        right->PreOrder();
+    }
+    void PostOrder(){
+        //left right
+        if(this==nullptr){return;}
+        left->PostOrder();
+        right->PostOrder();
+         cout<<this->data<<" ";
     }
 };
 int main(){
   BinaryNode<string>* A=new BinaryNode<string>("A");
   BinaryNode<string>* B=new BinaryNode<string>("B");
   BinaryNode<string>* C=new BinaryNode<string>("C");
+  BinaryNode<string>* D=new BinaryNode<string>("D");
   A->setLeft(B);
   A->setRight(C);
-  cout<<A->size();
-  cout<<A->Height();
-  B->clear();
+  C->setRight(D);
+  cout<<"Size: "<<A->size()<<endl;
+  cout<<"Height: "<<A->Height()<<endl;
+//   B->clear(A);
+  cout<<"Size: "<<A->size()<<endl;
+  cout<<"Height: "<<A->Height()<<endl;
+  cout<<"In order: ";
+  A->Inorder();
+    cout<<endl;
+  cout<<"Pre order: ";
+  A->PreOrder();
+  cout<<endl;
+   cout<<"Post order: ";
+   A->PostOrder();
+   cout<<endl;
   return 0;
 }
